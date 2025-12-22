@@ -1,0 +1,8 @@
+{"centralized" : "data/centralized",
+	"tables" : "data/tables_unique",
+	"tables_raw" : "data/tables_raw",
+    "testdata" : "data/tables/example.csv",
+    "accounts" : "data/accounts.json",
+    "top_picture" : "images/hitster.png",
+    "qrcode_yt" : "data/qrcodes/youtube",
+    "qrcode_spotify" : "data/qrcodes/spotify"}
