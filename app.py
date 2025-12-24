@@ -43,6 +43,43 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Add explanation dropdown at top of app
+with st.expander("📖 Explanation: How to Play 'Guess the Year'"):
+    st.markdown("""
+    ## 🕹️ Welcome to *Guess the Year*!  
+    This is a fun team-based music guessing game where you test your knowledge of song release years — and optionally your skill in naming the song and artist.
+
+    ---
+    ### **🎯 Minimum Game Rules:**
+    1. **Divide into Teams**  
+       Gather your friends or family and form teams. Friendly rivalry encouraged!
+    2. **Hear a Song**  
+       The game plays a randomly selected song.
+    3. **Guess the Release Year**  
+       Instead of blindly guessing, place the song in its correct order **relative to the years you've already guessed**.
+    4. **Win the Song**  
+       If your team guesses correctly, you "win" that song and it is added to your team's timeline.
+
+    ---
+    ### **✨ Extra Rules (optional – feel free to add your own!):**
+    5. **Guess the Song Title and Artist**  
+       Bonus challenge: name the song **and** the artist correctly.
+    6. **Earn Tokens**  
+       If you guess both title and artist right, you gain a *token*. (Keep track of tokens manually.)
+    7. **Use Tokens to Contest**  
+       Spend a token to challenge another team's guess.
+    8. **Steal the Song**  
+       If your contest is correct, you win the song for your team instead — even if the other team guessed wrong.
+
+    ---
+    **Goal:** Be the team with the most correctly placed songs and prove your musical timeline mastery! 
+    
+    ---
+    
+    **Remember**: these are **minimum rules** — make the game your own!🎶
+
+    """, unsafe_allow_html=True)
+
 if not st.session_state.chose_players:
     number_rounds = st.slider(min_value=2, max_value = 30, value = 10, label = "How many points to win?")
     number_of_players = st.slider(min_value=1, max_value = 10, value = 2, label = "How many players?")
@@ -77,7 +114,7 @@ if not st.session_state.get("list_chosen", False):
         st.session_state.chosen_list = chosen_lists
 
     if st.session_state.chosen_list and st.button("Choose list(s)!"):
-        st.session_state.df = st.session_state.df_all.query("origin in @st.session_state.chosen_list")
+        st.session_state.df = st.session_state.df_all.query("origin in @st.session_state.chosen_list").copy()
         
         # Clean up artist and title text
         st.session_state.df['artist'] = (
